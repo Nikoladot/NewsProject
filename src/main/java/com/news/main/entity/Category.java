@@ -20,7 +20,7 @@ public class Category {
 	@Column
 	private String description;
 	
-	
+	// neki komentar
 	public Category() {
 		
 	}
