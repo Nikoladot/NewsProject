@@ -9,9 +9,11 @@ public class TestController {
 	
 	
 	@RequestMapping(value = "/")
-	public String getTestPage() {
+	public String getTestTest() {
 		
-		return "test";
+		//DANIJEL
+		
+		return "TEST";
 	}
 
 }
