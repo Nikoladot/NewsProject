@@ -12,8 +12,8 @@ import com.news.main.entity.Category;
 import com.news.main.service.CategoryService;
 
 @RestController
-@RequestMapping(value = "/api")
-public class Controller {
+@RequestMapping(value = "/admin")
+public class AdminController {
 	
 	@Autowired
 	private CategoryService categoryService;
