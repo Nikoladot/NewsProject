@@ -50,18 +50,39 @@ public class AdminController {
 		categoryService.deleteCategory(id);
 		
 	}
-	//___________________________________________________________________________________
 	
 	
-	
+	//_____________________________ TAG METHODS _________________________________________
 
-	//Tag Controller
 
-	@RequestMapping(value = "/tags")
+	@RequestMapping(value = "/tags", method = RequestMethod.GET)
 	public List<Tag> getAllTags(){
 
-		return  tagService.getTags();
+		return  tagService.getAllTags();
 	}
+	
+	@RequestMapping(value = "/tags/{id}", method = RequestMethod.GET)
+	public Tag getTagById(@PathVariable int id) {
+		
+		return tagService.getTagById(id);
+	}
+	
+	@RequestMapping(value = "/tags", method = RequestMethod.POST)
+	public void addTag(@RequestBody Tag tag) {
+		tagService.addTag(tag);
+	}
+	
+	@RequestMapping(value = "/tags/{id}", method = RequestMethod.PUT)
+	public void updateTag(@RequestBody Tag tag, @PathVariable int id) {
+		tagService.updateTag(tag, id);
+	}
+	
+	@RequestMapping(value = "/tags/{id}", method = RequestMethod.DELETE)
+	public void deleteTag(@PathVariable int id) {
+		tagService.deleteTag(id);
+	}
+	
+	
 
 
 

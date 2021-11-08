@@ -1,7 +1,5 @@
 package com.news.main.entity;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,14 +11,14 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private String name;
+    private String title;
 
     public Tag() {
     }
 
     public Tag(int id, String name) {
         this.id = id;
-        this.name = name;
+        this.title = name;
     }
 
     public int getId() {
@@ -32,18 +30,18 @@ public class Tag {
     }
 
     public String getName() {
-        return name;
+        return title;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.title = name;
     }
 
     @Override
     public String toString() {
         return "tags{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + title + '\'' +
                 '}';
     }
 }
