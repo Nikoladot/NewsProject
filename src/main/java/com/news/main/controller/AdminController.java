@@ -23,6 +23,7 @@ public class AdminController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	//_______________________ CATEGORY METHODS __________________________________________
 	
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public List<Category> getAllCategories() {
@@ -49,6 +50,7 @@ public class AdminController {
 		categoryService.deleteCategory(id);
 		
 	}
+	//___________________________________________________________________________________
 	
 	
 	
