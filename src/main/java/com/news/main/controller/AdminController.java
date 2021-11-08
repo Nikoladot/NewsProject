@@ -1,13 +1,14 @@
 package com.news.main.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import com.news.main.entity.Tag;
-import com.news.main.repository.CategoryRepository;
+import com.news.main.service.CategoryService;
 import com.news.main.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.news.main.entity.Category;
@@ -20,36 +21,37 @@ public class AdminController {
 	@Autowired
 	private TagService tagService;
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryService categoryService;
 	
-		//METHOD GET ALL CATEGORIES
-		public List<Category> getCategories(){
-			
-			List<Category> categories = new ArrayList<>();
-			categoryRepository.findAll()
-			.forEach(categories::add);
-			return categories;
-		}
+	
+	@RequestMapping(value = "/categories", method = RequestMethod.GET)
+	public List<Category> getAllCategories() {
+		return categoryService.getCategories();
+	}
+	
+	@RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
+	public Category getCategoryById(@PathVariable int id) {
+		return categoryService.getCategoryById(id);
+	}
+	
+	@RequestMapping(value = "/categories", method = RequestMethod.POST )
+	public void addCategory(@RequestBody Category category) {
+		categoryService.addCategory(category);	
+	}
+	
+	@RequestMapping(value = "/categories/{id}", method = RequestMethod.PUT)
+	public void updateCategory(@RequestBody Category category, @PathVariable int id) {
+		categoryService.updateCategory(category, id);
+	}
+	
+	@RequestMapping(value = "/categories/{id}", method = RequestMethod.DELETE)
+	public void deleteCategory(@PathVariable int id) {
+		categoryService.deleteCategory(id);
 		
-		//METHOD GET ONE CATEGORY BY ID
-		public Category getCategoryById(int id) {
-			return categoryRepository.findById(id).get();
-		}
-		
-		//METHOD ADD NEW CATEGORY
-		public void addCategory(Category category) {
-			categoryRepository.save(category);
-		}
-		
-		//METHOD DELETE CATEGORY
-		public void deleteCategory(int id) {
-			categoryRepository.deleteById(id);
-		}
-		
-		//METHOD UPDATE CATEGORY
-		public void updateCategory(Category category, int id) {
-			categoryRepository.save(category);
-		}
+	}
+	
+	
+	
 
 	//Tag Controller
 
