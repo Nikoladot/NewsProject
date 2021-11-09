@@ -12,7 +12,7 @@ public class Tag {
     private int id;
     @Column
     private String name;
-
+// test
     public Tag() {
     }
 
