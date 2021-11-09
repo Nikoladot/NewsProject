@@ -82,6 +82,11 @@ public class AdminController {
 		tagService.deleteTag(id);
 	}
 	
+	//_____________________________ NEWS METHODS _________________________________________
+	
+	
+	
+	
 	
 
 

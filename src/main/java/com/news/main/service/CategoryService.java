@@ -22,6 +22,7 @@ public class CategoryService {
 		categoryRepository.findAll()
 		.forEach(categories::add);
 		return categories;
+		
 	}
 	
 	//METHOD GET ONE CATEGORY BY ID
