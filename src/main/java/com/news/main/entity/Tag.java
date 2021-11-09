@@ -11,14 +11,14 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private String title;
+    private String name;
 
     public Tag() {
     }
 
     public Tag(int id, String name) {
         this.id = id;
-        this.title = name;
+        this.name = name;
     }
 
     public int getId() {
@@ -30,18 +30,18 @@ public class Tag {
     }
 
     public String getName() {
-        return title;
+        return name;
     }
 
     public void setName(String name) {
-        this.title = name;
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "tags{" +
                 "id=" + id +
-                ", name='" + title + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

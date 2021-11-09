@@ -27,7 +27,7 @@ public class TagService {
     
     //METHOD GET TAG BY ID
     public Tag getTagById(int id) {
-    	 return tagRepository.findById(id).get();
+        return tagRepository.findById(id).get();
     }
     
     //METHOD ADD NEW TAG
