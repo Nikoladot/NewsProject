@@ -1,14 +1,17 @@
 package com.news.main.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "blogs")
+@Table(name = "news")
 public class News {
 	
 	@Id	
@@ -19,6 +22,10 @@ public class News {
 	private String name;
 	@Column
 	private String description;
+	
+	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name = "id_category")
+	private Category category;
 	
 	
 	public News() {
@@ -56,6 +63,14 @@ public class News {
 		this.description = description;
 	}
 	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
