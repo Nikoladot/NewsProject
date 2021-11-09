@@ -1,5 +1,6 @@
 package com.news.main.service;
 
+import com.news.main.entity.News;
 import com.news.main.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class NewsService {
 
     public List<News> getAllNews(){
 
-        List<News> news = new ArrayList<>();
+        List<News> news = new ArrayList<News>();
         newsRepository.findAll()
                 .forEach(news::add);
 
