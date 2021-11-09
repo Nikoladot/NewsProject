@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//DANE
+
+
 @Entity
 @Table(name = "categories")
 public class Category {
