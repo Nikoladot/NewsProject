@@ -3,6 +3,7 @@ package com.news.main.controller;
 import java.util.List;
 import com.news.main.entity.Tag;
 import com.news.main.service.CategoryService;
+import com.news.main.service.NewsService;
 import com.news.main.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.news.main.entity.Category;
+import com.news.main.entity.News;
 
 @RestController
 @RequestMapping(value = "/admin")
@@ -22,6 +24,8 @@ public class AdminController {
 	private TagService tagService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private NewsService newsService;
 	
 	//_______________________ CATEGORY METHODS __________________________________________
 	
@@ -85,8 +89,34 @@ public class AdminController {
 	//_____________________________ NEWS METHODS _________________________________________
 	
 	
+	@RequestMapping(value = "/news", method = RequestMethod.GET)
+	public List<News> getAllNews() {
+		return newsService.getAllNews();
+		
+	}
 	
+	@RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
+	public News getNewsById(@PathVariable int id) {
+		return newsService.getNewsById(id);
+	}
 	
+	@RequestMapping(value = "/news", method = RequestMethod.POST)
+	public void addNews(@RequestBody News news) {
+		newsService.addNews(news);
+	}
+	
+	@RequestMapping(value = "/news/{id}", method = RequestMethod.PUT)
+	public void updateNews(@RequestBody News news, @PathVariable int id) {
+		newsService.updateNews(news, id);
+	}
+	
+	@RequestMapping(value = "/news/{id}", method = RequestMethod.DELETE)
+	public void deleteNews(@PathVariable int id) {
+		newsService.deleteNews(id);
+	}
+	
+	//______________________________________________________________________
+
 	
 
 
