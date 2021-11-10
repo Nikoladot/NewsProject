@@ -1,6 +1,7 @@
 package com.news.main.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tags")
@@ -12,6 +13,8 @@ public class Tag {
     private int id;
     @Column
     private String name;
+
+
 
     public Tag() {
     }

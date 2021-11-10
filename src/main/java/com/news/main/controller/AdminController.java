@@ -31,6 +31,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public List<Category> getAllCategories() {
+
 		return categoryService.getCategories();
 	}
 	
@@ -91,6 +92,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/news", method = RequestMethod.GET)
 	public List<News> getAllNews() {
+
+		System.out.println(newsService.getAllNews());
 		return newsService.getAllNews();
 		
 	}
