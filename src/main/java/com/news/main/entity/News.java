@@ -1,14 +1,10 @@
 package com.news.main.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "news")
@@ -26,6 +22,9 @@ public class News {
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name = "id_category")
 	private Category category;
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinTable(name = "news_tags", joinColumns = @JoinColumn(name = "news_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private List<Tag> tag;
 	
 	
 	public News() {
@@ -71,10 +70,11 @@ public class News {
 		this.category = category;
 	}
 
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return name+" - "+id;
+		return name+" - "+id + tag;
 	}
 	
 	
