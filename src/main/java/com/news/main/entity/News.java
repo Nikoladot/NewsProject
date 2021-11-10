@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "news")
 public class News {
 	
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int id;
@@ -69,7 +69,14 @@ public class News {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	public List<Tag> getTag() {
+		return tag;
+	}
 
+	public void setTag(List<Tag> tag) {
+		this.tag = tag;
+	}
 
 	@Override
 	public String toString() {
