@@ -2,9 +2,12 @@ package com.news.main.controller;
 
 import java.util.List;
 import com.news.main.entity.Tag;
+import com.news.main.entity.User;
 import com.news.main.service.CategoryService;
 import com.news.main.service.NewsService;
 import com.news.main.service.TagService;
+import com.news.main.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,8 @@ public class AdminController {
 	private CategoryService categoryService;
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private UserService userService;
 	
 	//_______________________ CATEGORY METHODS __________________________________________
 	
@@ -118,8 +123,33 @@ public class AdminController {
 		newsService.deleteNews(id);
 	}
 	
-	//______________________________________________________________________
+	//___________________________USER METHODS___________________________________________
 
+	
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public List<User> getAllUsers() {
+		return userService.getAllUsers();
+	}
+	
+	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
+	public User getUserByUsername(@PathVariable String username) {
+		return userService.getUserByUsername(username);
+	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	public void addUser(@RequestBody User user) {
+		userService.addUser(user);
+	}
+	
+	@RequestMapping(value = "/users/{username}", method = RequestMethod.PUT)
+	public void updateUser(@RequestBody User user,@PathVariable String username) {
+		userService.updateUser(user, username);
+	}
+	
+	@RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
+	public void deleteUser(@PathVariable String username) {
+		userService.delete(username);
+	}
 	
 
 
