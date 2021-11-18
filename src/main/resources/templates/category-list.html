@@ -192,17 +192,17 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 10%">ID</th>
-                                        <th style="width: 30%;">Name</th>
+                                        <th style="width: 70%;">Name</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody id="sort-list">
-                                    <tr>
-                                        <td> 1.
-                                        </td>
-                                        <td>
-                                            <strong>Category 1</strong>
-                                        </td>
+
+                                    <tr th:each="category : ${categories}">
+
+                                        <td th:text="${category.id}"/>
+                                        <td th:text="${category.name}"/>
+
 
                                         <td class="text-center">
                                             <div class="btn-group">
@@ -214,26 +214,8 @@
                                                 </button>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2.
-                                        </td>
-                                        <td>
-                                            <strong>Category 2</strong>
-                                        </td>
 
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <a href="#" class="btn btn-info">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#delete-modal">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <tr/>
                                     </tbody>
                                 </table>
                             </div>

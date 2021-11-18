@@ -31,6 +31,10 @@ public class AdminController {
     @RequestMapping(value = "/category-list", method = RequestMethod.GET)
     public String getCategoryList(Model model) {
 
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
+
+
 
         return "category-list";
 
