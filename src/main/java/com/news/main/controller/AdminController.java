@@ -38,6 +38,5 @@ public class AdminController {
 
         return "category-list";
 
-    }
 
 }
