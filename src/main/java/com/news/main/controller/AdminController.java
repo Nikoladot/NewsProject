@@ -61,6 +61,7 @@ public class AdminController {
     @RequestMapping(value = "/category-save", method = RequestMethod.POST)
     public String getCategorySave(@ModelAttribute Category category){
 
+
         categoryService.addCategory(category);
 
         return "redirect:/admin/category-list";
