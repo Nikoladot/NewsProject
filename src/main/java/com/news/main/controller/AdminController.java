@@ -2,6 +2,7 @@ package com.news.main.controller;
 
 import com.news.main.entity.Category;
 import com.news.main.entity.Tag;
+import com.news.main.entity.User;
 import com.news.main.service.CategoryService;
 import com.news.main.service.NewsService;
 import com.news.main.service.TagService;
@@ -131,5 +132,27 @@ public class AdminController {
 
     }
 
+    //Users
+    @RequestMapping(value = "/user-list", method = RequestMethod.GET)
+    public String getUserList(Model model) {
 
-}
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+
+
+        return "user-list";
+    }
+
+    @RequestMapping(value = "/user-delete/{id}", method = RequestMethod.GET)
+    public String getUserDelete(@PathVariable ("id") int id) {
+
+        userService.deleteUser(id);
+
+        return "redirect:/admin/user-list";
+    }
+
+
+
+    }
+
+

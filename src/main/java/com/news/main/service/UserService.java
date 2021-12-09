@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 	}
 	
 	//METHOD DELETE USER
-	public void delete(int id) {
+	public void deleteUser(int id) {
 		
 		userRepository.deleteById(id);
 	}

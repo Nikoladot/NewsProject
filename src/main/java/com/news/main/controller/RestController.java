@@ -147,7 +147,7 @@ public class RestController {
 	
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
 	public void deleteUser(@PathVariable int id) {
-		userService.delete(id);
+		userService.deleteUser(id);
 	}
 	
 
