@@ -47,9 +47,9 @@
                                 <div class="card-tools">
 
 
-                                    <a th:href="@{/admin/category-form}" class="btn btn-success">
+                                    <a th:href="@{/admin/tag-form}" class="btn btn-success">
                                         <i class="fas fa-plus-square"></i>
-                                        Add new Category
+                                        Add new Tag
                                     </a>
                                 </div>
                             </div>
@@ -60,27 +60,25 @@
                                     <tr>
                                         <th style="width: 10%">ID</th>
                                         <th style="width: 30%;">Name</th>
-                                        <th style="width: 40%;">Description</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody id="sort-list">
 
-                                    <tr th:each="category : ${categories}">
+                                    <tr th:each="tag : ${tags}">
 
-                                        <td th:text="${category.id}"/>
-                                        <td th:text="${category.name}"/>
-                                        <td th:text="${category.description}"/>
+                                        <td th:text="${tag.id}"/>
+                                        <td th:text="${tag.name}"/>
 
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <a th:href="@{category-update/(id=${category.id})}" class="btn btn-info">
+                                                <a th:href="@{tag-update/(id=${tag.id})}" class="btn btn-info">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
 
 
-                                                <a th:href="@{category-delete/{id}(id=${category.id})}" class="btn btn-danger ml-2" onclick="if (!(confirm('Are you sure you want to delete this category?'))) return false">Delete</a>
+                                                <a th:href="@{tag-delete/{id}(id=${tag.id})}" class="btn btn-danger ml-2" onclick="if (!(confirm('Are you sure you want to delete this category?'))) return false">Delete</a>
                                             </div>
                                         </td>
 

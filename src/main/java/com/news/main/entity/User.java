@@ -1,48 +1,50 @@
 package com.news.main.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	@Column
 	private String username;
 	@Column
+	private String surname;
+	@Column
 	private String password;
 	@Column
-	private String name;
-	@Column
-	private String surname;
-	
-	@JoinTable(name = "authorities", joinColumns = @JoinColumn(name="username"), inverseJoinColumns = @JoinColumn(name="authority"))
-	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},fetch = FetchType.EAGER)
-	private List<Role> roles;
-	
+	private String email;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "user_roles",
+			joinColumns = @JoinColumn(
+					name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(
+					name = "role_id", referencedColumnName = "id"))
+	private Collection<Role> roles;
+
 	public User() {
-		
 	}
 
-	public User(String username, String password, String name, String surname) {
-		super();
+	public User( String username, String surname, String password, String email, Collection<Role> roles) {
+
 		this.username = username;
-		this.password = password;
-		this.name = name;
 		this.surname = surname;
+		this.password = password;
+		this.email = email;
+		this.roles = roles;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -53,6 +55,14 @@ public class User {
 		this.username = username;
 	}
 
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -61,36 +71,31 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
-	public List<Role> getRoles() {
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return name+" "+surname+" - "+username;
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", surname='" + surname + '\'' +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", roles=" + roles +
+				'}';
 	}
-	
-	
-
 }

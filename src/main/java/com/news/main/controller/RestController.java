@@ -131,8 +131,8 @@ public class RestController {
 	}
 	
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
-	public User getUserByUsername(@PathVariable String username) {
-		return userService.getUserByUsername(username);
+	public User getUserByUsername(@PathVariable int id) {
+		return userService.getUserByUsername(id);
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
@@ -146,8 +146,8 @@ public class RestController {
 	}
 	
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable String username) {
-		userService.delete(username);
+	public void deleteUser(@PathVariable int id) {
+		userService.delete(id);
 	}
 	
 

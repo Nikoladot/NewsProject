@@ -14,29 +14,39 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private String authority;
+	private int id;
+	@Column
+	private String name;
 	
 	public Role() {
 		
 	}
 
-	public Role(String authority) {
-		super();
-		this.authority = authority;
+	public Role(String name) {
+		this.name = name;
 	}
 
-	public String getAuthority() {
-		return authority;
+	public int getId() {
+		return id;
 	}
 
-	public void setAuthority(String authority) {
-		this.authority = authority;
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return authority;
+		return "Role{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
 	}
-
 }

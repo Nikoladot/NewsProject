@@ -1,9 +1,15 @@
 package com.news.main.repository;
 
+import com.news.main.dto.UserRegistrationDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.news.main.entity.User;
 
-public interface UserRepository extends JpaRepository<User, String> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User save(UserRegistrationDto registrationDto);
+    User findByEmail(String email);
 
 }

@@ -1,6 +1,7 @@
 package com.news.main.controller;
 
 import com.news.main.entity.Category;
+import com.news.main.entity.Tag;
 import com.news.main.service.CategoryService;
 import com.news.main.service.NewsService;
 import com.news.main.service.TagService;
@@ -8,10 +9,7 @@ import com.news.main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,14 +56,80 @@ public class AdminController {
         return "/category-form";
     }
 
+
+
+    @RequestMapping(value = "/category-update", method = RequestMethod.GET)
+    public String getCategoryUpdate(@RequestParam("id") int id, Model model) {
+
+        System.out.println("update metoda");
+        Category category = categoryService.getCategoryById(id);
+
+        model.addAttribute("category", category);
+
+        return "category-form";
+
+    }
     @RequestMapping(value = "/category-save", method = RequestMethod.POST)
     public String getCategorySave(@ModelAttribute Category category){
-
+        System.out.println("save metoda");
 
         categoryService.addCategory(category);
 
         return "redirect:/admin/category-list";
 
     }
+
+    //tags
+    @RequestMapping(value = "/tag-list", method = RequestMethod.GET)
+    public String getTagList(Model model) {
+
+        List<Tag> tags = tagService.getAllTags();
+        model.addAttribute("tags", tags);
+
+
+        return "tag-list";
+    }
+
+    @RequestMapping(value = "/tag-delete/{id}", method = RequestMethod.GET)
+    public String getTagDelete(@PathVariable ("id") int id) {
+
+        tagService.deleteTag(id);
+
+        return "redirect:/admin/tag-list";
+    }
+
+    @RequestMapping(value = "/tag-form", method = RequestMethod.GET)
+    public String getTagsForm(Model model) {
+
+        Tag tag = new Tag();
+
+        model.addAttribute("tag", tag);
+
+        return "/tag-form";
+    }
+
+
+
+    @RequestMapping(value = "/tag-update", method = RequestMethod.GET)
+    public String getTagUpdate(@RequestParam("id") int id, Model model) {
+
+        System.out.println("update metoda");
+        Tag tag = tagService.getTagById(id);
+
+        model.addAttribute("tag", tag);
+
+        return "tag-form";
+
+    }
+    @RequestMapping(value = "/tag-save", method = RequestMethod.POST)
+    public String getTagSave(@ModelAttribute Tag tag){
+        System.out.println("save metoda");
+
+        tagService.addTag(tag);
+
+        return "redirect:/admin/tag-list";
+
+    }
+
 
 }
